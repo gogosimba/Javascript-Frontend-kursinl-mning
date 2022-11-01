@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YeOldeBrewery</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../src/assets/js/main.js" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to ye olde brewery</h1>
+        <p>Click 'Empty Cart' button to clear local storage</p>
+        <div id="alerts"></div>
+        <div class="productcont" id="productgallery">
+            <div class="product">
+                <h3 class="productname">Product 1</h3>
+                <p>Placeholder for api</p>
+                <p class="price">$5.05</p>
+                <button class="addtocart">Add To Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://miro.medium.com/max/1400/1*gQwdEeaZFiPNBBGvsLd2LA.png" alt="nicepic">
+                <h3 class="productname">Product 2</h3>
+                <p>Placeholder for api</p>
+                <p class="price">$8.50</p>
+                <button class="addtocart">Add To Cart</button>
+            </div>
+            <div class="product">
+                <h3 class="productname">Product 3</h3>
+                <p>Placeholder for api</p>
+                <p class="price">$10.50</p>
+                <button class="addtocart">Add To Cart</button>
+            </div>
+        </div>
+        <div class="cart-container">
+            <h2>Cart</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th><strong>Product</strong></th>
+                        <th><strong>Price</strong></th>
+                    </tr>
+                </thead>
+                <tbody id="carttable">
+                </tbody>
+            </table>
+            <hr>
+            <table id="carttotals">
+                <tr>
+                    <td><strong>Items</strong></td>
+                    <td><strong>Total</strong></td>
+                </tr>
+                <tr>
+                    <td>x <span id="itemsquantity">0</span></td>
+                    <td>$<span id="total">0</span></td>
+                </tr>
+            </table>
+            <div class="cart-buttons">
+                <button id="emptycart">Empty Cart</button>
+                <button id="checkout">Checkout</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

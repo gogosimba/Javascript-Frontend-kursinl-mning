@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;900&display=swap');
 
 
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto Slab', serif;
     text-align: center;
     line-height: 1.5em;
-    background: #69d2e7;
+    background: #F08A5D;
 }
 
 hr {
@@ -22,12 +22,13 @@ h1 {
 .container {
     max-width: 800px;
     margin: 1em auto;
-    background: #FFF;
+    background: #ffffff;
     padding: 30px;
     border-radius: 5px;
 }
 
 .productcont {
+    padding: 30px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
@@ -37,13 +38,29 @@ h1 {
 
 .product {
     padding: 1em;
-    border: 1px solid #E0E4CC;
+    border: 1px solid #020202;
     margin-right: 1em;
     border-radius: 5px;
 }
-img{
-    width: 140px;
+
+.description {
+    font-size: large;
+    width: 200px;
+    height: 100px;
+    overflow: auto;
+    text-overflow: ellipsis 
 }
+
+.price{
+    font-size: x-large;
+    
+}
+
+.product > img {
+    width: 140px;
+    height: 330px;
+}
+
 .cart-container {
     border: 1px solid #E0E4CC;
     border-radius: 5px;
@@ -62,9 +79,7 @@ button {
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-button:hover,
-button:focus,
-button:active {
+button:hover {
     background: #A7DBD8;
     border-color: #69D2E7;
     color: #000;
@@ -99,6 +114,9 @@ table th {
 
 #emptycart {
     margin-right: 1em;
+}
+#newbeers{
+    padding: 0.6em 3em;
 }
 
 

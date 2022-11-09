@@ -119,8 +119,6 @@ updateCart = function () {
     if(localStorage.getItem('cart')) {
         //hämtar cart data och parsar till en array
         var cart = JSON.parse(localStorage.getItem('cart'));
-        console.log(cart);
-        //get no of items in cart 
         items = cart.length;
         //loopar igenom cart arrayen
         for (var i = 0; i < items; i++){

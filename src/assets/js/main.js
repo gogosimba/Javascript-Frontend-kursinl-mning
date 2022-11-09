@@ -74,28 +74,73 @@ newBeers.addEventListener("click", function () {
     getBeers();
 })
 
-addToCart = function(elem){
+addToCart = function (elem) {
     let getprice;
     let getproductName;
-    while(elem = elem.previousSibling) {
+    let cart = [];
+    let stringCart;
+    while (elem = elem.previousSibling) {
         if (elem.nodeType === 3) continue; // Skippar textnoder
-        if(elem.className == "price"){
+        if (elem.className == "price") {
             getprice = elem.innerText;
         }
         if (elem.className == "productname") {
             getproductName = elem.innerText;
         }
-        sibs.push(elem);
     }
-    cartOutput.innerHTML += "<tr><td>" + getproductName + "<td>" +getprice;
-    console.log(sibs);
-    console.log(getprice);
-    console.log(getproductName);
+    cartOutput.innerHTML += "<tr><td>" + getproductName + "<td>" + getprice;
+    var product = {
+        productname: getproductName,
+        price: getprice
+    };
+    let stringProduct = JSON.stringify(product);
+    if (!localStorage.getItem('cart')) {
+        cart.push(stringProduct);
+        stringCart = JSON.stringify(cart);
+        localStorage.setItem('cart', stringCart);
+        updateCart();
+    }
+    else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        cart.push(stringProduct);
+        stringCart = JSON.stringify(cart);
+        localStorage.setItem('cart', stringCart);
+        updateCart();
+    }
+
 }
 
-updateCart = function(){
+updateCart = function () {
+    var total = 0;
+    var price = 0;
+    var items = 0;
+    var productname = "";
+    var carttable = "";
+    if(localStorage.getItem('cart')) {
+        //hämtar cart data och parsar till en array
+        var cart = JSON.parse(localStorage.getItem('cart'));
+        console.log(cart);
+        //get no of items in cart 
+        items = cart.length;
+        //loopar igenom cart arrayen
+        for (var i = 0; i < items; i++){
+            var x = JSON.parse(cart[i]);
+            price = parseFloat(x.price.split('$')[1]);
+            productname = x.productname;
+            carttable += "<tr><td>" + productname + "</td><td>$" + price.toFixed(2) + "</td></tr>";
+            total+=price;
+        }
+        
+    }
 
-        itemString = JSON.stringify(items);
-        itemString = itemString.replace(/[|&;$%@"<>()+,]/g,"");
-        console.log(itemString);
+    document.getElementById("total").innerHTML = total;
+    document.getElementById("carttable").innerHTML = carttable;
+    document.getElementById("itemsquantity").innerHTML = items;
 }
+emptycart.addEventListener("click", function () {
+    if(localStorage.getItem('cart')){
+        localStorage.removeItem('cart');
+        updateCart();   
+    }
+        
+})

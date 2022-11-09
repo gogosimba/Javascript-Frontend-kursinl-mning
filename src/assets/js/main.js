@@ -3,8 +3,8 @@ const newBeers = document.getElementById("newbeers");
 const emptycart = document.getElementById("emptycart");
 const gallery = document.querySelector('.productcont');
 const addtocartBtns = document.getElementsByClassName('addtocart');
-const items = { ...localStorage };
 let apiData = [];
+let beerNumber = 6;
 let lastBeer = 0;
 let cartOutput = document.getElementById('carttable');
 let output = "";
@@ -15,7 +15,7 @@ window.onload = () => {
     updateCart();
 }
 
-
+//Loopar igenom alla addtocart buttons och ger de en listener.
 addListeners = function () {
     for (var i = 0; i < addtocartBtns.length; i++) {
         addtocartBtns[i].addEventListener('click', function () { addToCart(this); });
@@ -38,7 +38,7 @@ getBeers = function () {
         lastBeer = 0;
     }
     let beerName, beerImg, beerDescription, beerPrice, beerVolume, finalBeer;
-    finalBeer = lastBeer + 6;
+    finalBeer = lastBeer + beerNumber;
     for (i = lastBeer; i < finalBeer; i++) {
         //Försöker fånga ett error om API'et tar slut under loopen och sätter då lastBeer till 0 och börjar om från början.
         try {
@@ -79,6 +79,7 @@ addToCart = function (elem) {
     let getproductName;
     let cart = [];
     let stringCart;
+    //Går igenom alla siblings i 'närheten' av knappen som togs med och hittar relevant information såsom pris,produktnamn.
     while (elem = elem.previousSibling) {
         if (elem.nodeType === 3) continue; // Skippar textnoder
         if (elem.className == "price") {
@@ -89,17 +90,21 @@ addToCart = function (elem) {
         }
     }
     cartOutput.innerHTML += "<tr><td>" + getproductName + "<td>" + getprice;
+    //Skapar ett objekt av produkten
     var product = {
         productname: getproductName,
         price: getprice
     };
+    //Konverterar produktobjektet till JSON så de kan lagras i localstorage 
     let stringProduct = JSON.stringify(product);
+    //Om cart inte finns så skapa den
     if (!localStorage.getItem('cart')) {
         cart.push(stringProduct);
         stringCart = JSON.stringify(cart);
         localStorage.setItem('cart', stringCart);
         updateCart();
     }
+    //Annars hämta ut cartdata och konvertera tillbaka den till en array
     else {
         cart = JSON.parse(localStorage.getItem('cart'));
         cart.push(stringProduct);
@@ -116,19 +121,19 @@ updateCart = function () {
     var items = 0;
     var productname = "";
     var carttable = "";
-    if(localStorage.getItem('cart')) {
+    if (localStorage.getItem('cart')) {
         //hämtar cart data och parsar till en array
         var cart = JSON.parse(localStorage.getItem('cart'));
         items = cart.length;
         //loopar igenom cart arrayen
-        for (var i = 0; i < items; i++){
+        for (var i = 0; i < items; i++) {
             var x = JSON.parse(cart[i]);
             price = parseFloat(x.price.split('$')[1]);
             productname = x.productname;
-            carttable += "<tr><td>" + productname + "</td><td>$" + price.toFixed(2) + "</td></tr>";
-            total+=price;
+            carttable += "<tr><td>" + productname + "</td><td>$" + price + "</td></tr>";
+            total += price;
         }
-        
+
     }
 
     document.getElementById("total").innerHTML = total;
@@ -136,9 +141,11 @@ updateCart = function () {
     document.getElementById("itemsquantity").innerHTML = items;
 }
 emptycart.addEventListener("click", function () {
-    if(localStorage.getItem('cart')){
-        localStorage.removeItem('cart');
-        updateCart();   
+    //Tömmer kundvagnen och rensar localstorage
+    if (confirm("Are you sure you want to empty your cart?")) {
+        if (localStorage.getItem('cart')) {
+            localStorage.removeItem('cart');
+            updateCart();
+        }
     }
-        
 })

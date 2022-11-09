@@ -48,8 +48,10 @@ h1 {
     width: 200px;
     height: 100px;
     overflow: auto;
-    text-overflow: ellipsis 
+    text-overflow: ellipsis;
+    
 }
+
 
 .price{
     font-size: x-large;
@@ -60,6 +62,8 @@ h1 {
     width: 140px;
     height: 330px;
 }
+
+
 
 .cart-container {
     border: 1px solid #E0E4CC;

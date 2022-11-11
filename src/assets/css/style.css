@@ -66,10 +66,21 @@ h1 {
 
 
 .cart-container {
+    background-color: white;
+    position: fixed;
+    left: 0%;
+    top: 90vh;
+    width: 20vw;
+    height: 90vh;
     border: 1px solid #E0E4CC;
     border-radius: 5px;
     margin-top: 1em;
     padding: 1em;
+    transition: top 1s;
+}
+
+.cart-container:hover{
+    top: 28vh;
 }
 
 button {
@@ -103,18 +114,11 @@ table th {
 }
 
 #carttotals {
-    margin-right: 0;
+    margin-right: 20vw;
     margin-left: auto;
 }
 
-.cart-buttons {
-    width: auto;
-    margin-right: 0;
-    margin-left: auto;
-    display: flex;
-    justify-content: flex-end;
-    padding: 1em 0;
-}
+
 
 #emptycart {
     margin-right: 1em;
@@ -131,4 +135,9 @@ table th {
     color: #679996;
     padding: 0.5em 0;
     margin: 1em 0;
+}
+@media only screen and (max-width: 200px) {
+    body{
+        background-color: red;
+    }
 }

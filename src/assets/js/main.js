@@ -4,7 +4,7 @@ const emptycart = document.getElementById("emptycart");
 const gallery = document.querySelector('.productcont');
 const addtocartBtns = document.getElementsByClassName('addtocart');
 let apiData = [];
-let beerNumber = 6;
+let beerNumber = 21;
 let lastBeer = 0;
 let cartOutput = document.getElementById('carttable');
 let output = "";
@@ -102,6 +102,7 @@ addToCart = function (elem) {
         cart.push(stringProduct);
         stringCart = JSON.stringify(cart);
         localStorage.setItem('cart', stringCart);
+        addedToCart(getproductName);
         updateCart();
     }
     //Annars hämta ut cartdata och konvertera tillbaka den till en array
@@ -110,9 +111,19 @@ addToCart = function (elem) {
         cart.push(stringProduct);
         stringCart = JSON.stringify(cart);
         localStorage.setItem('cart', stringCart);
+        addedToCart(getproductName);
         updateCart();
     }
 
+}
+
+function addedToCart(pname) {
+    var message = pname + " was added to the cart";
+    var alerts = document.getElementById("alerts");
+    alerts.innerHTML = message;
+    if (!alerts.classList.contains("message")) {
+        alerts.classList.add("message");
+    }
 }
 
 updateCart = function () {

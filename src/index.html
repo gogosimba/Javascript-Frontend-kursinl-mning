@@ -15,8 +15,10 @@
     <header>
     </header>
     <div class="container">
-        <p>Click 'Empty Cart' button to clear local storage</p>
+        <p>Click 'Empty Cart' button to empty your cart and localstorage</p>
+        <p>Hover over the cart window to extend it</p>
         <button id="newbeers">Load more beers</button>
+        <button id="emptycart">Empty Cart</button>
         <div id="alerts"></div>
         <div class="productcont" id="productgallery">
             <div class="product">
@@ -41,34 +43,32 @@
                 <button class="addtocart">Add To Cart</button>
             </div>
         </div>
-        <div class="cart-container">
-            <h2>Cart</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th><strong>Product</strong></th>
-                        <th><strong>Price</strong></th>
-                    </tr>
-                </thead>
-                <tbody id="carttable">
-                </tbody>
-            </table>
-            <hr>
-            <table id="carttotals">
-                <tr>
-                    <td><strong>Items</strong></td>
-                    <td><strong>Total</strong></td>
-                </tr>
-                <tr>
-                    <td>x <span id="itemsquantity">0</span></td>
-                    <td>$<span id="total">0</span></td>
-                </tr>
-            </table>
-            <div class="cart-buttons">
-                <button id="emptycart">Empty Cart</button>
-            </div>
-        </div>
+        
     </div>
+    </div>
+    <div class="cart-container">
+        <h2>Cart</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Product</strong></th>
+                    <th><strong>Price</strong></th>
+                </tr>
+            </thead>
+            <tbody id="carttable">
+            </tbody>
+        </table>
+        <hr>
+        <table id="carttotals">
+            <tr>
+                <td><strong>Items</strong></td>
+                <td><strong>Total</strong></td>
+            </tr>
+            <tr>
+                <td>x <span id="itemsquantity">0</span></td>
+                <td>$<span id="total">0</span></td>
+            </tr>
+        </table>
     </div>
 </body>
 

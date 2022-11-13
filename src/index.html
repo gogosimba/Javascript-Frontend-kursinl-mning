@@ -8,16 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../src/assets/js/main.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <header>
+        <button class="requestBtn" onclick="window.location.href='jsonplaceholder.html'">Jsonplaceholder</button>
     </header>
     <div class="container">
         <p>Click 'Empty Cart' button to empty your cart and localstorage</p>
         <p>Hover over the cart window to extend it</p>
         <button id="newbeers">Load more beers</button>
+        <button id="randombeer">Get a random beer</button>
         <button id="emptycart">Empty Cart</button>
         <div id="alerts"></div>
         <div class="productcont" id="productgallery">

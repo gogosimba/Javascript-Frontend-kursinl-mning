@@ -1,8 +1,10 @@
 const api_url = "https://api.punkapi.com/v2/beers?page=2&per_page=80";
+const api_random = "https://api.punkapi.com/v2/beers/random"
 const newBeers = document.getElementById("newbeers");
+const randomBeer = document.getElementById("randombeer")
 const emptycart = document.getElementById("emptycart");
-const gallery = document.querySelector('.productcont');
-const addtocartBtns = document.getElementsByClassName('addtocart');
+const gallery = document.querySelector(".productcont");
+const addtocartBtns = document.getElementsByClassName("addtocart");
 let apiData = [];
 let beerNumber = 21;
 let lastBeer = 0;
@@ -22,12 +24,12 @@ addListeners = function () {
     }
 }
 
-//Laddar in API till apiData så att fetch inte körs mer än en gång och uppdaterar sidan
+//Hämtar data och sparar den i en lokal array
 loadBeers = function () {
     fetch(api_url)
         .then(res => res.json())
-        .then(data => {
-            apiData = data;
+        .then(beers => {
+            apiData = beers;
             getBeers();
         })
 }
@@ -47,6 +49,7 @@ getBeers = function () {
             beerDescription = apiData[i].description;
             beerPrice = apiData[i].ebc;
             beerVolume = apiData[i].volume;
+            beerTips = apiData[i].brewers_tips;
             lastBeer = i;
         }
         catch (TypeError) {
@@ -58,6 +61,7 @@ getBeers = function () {
                 <img src="${beerImg}" alt="a beer">
                 <p class="price">$${beerPrice}</p>
                 <p class="volume">${beerVolume.value} ${beerVolume.unit}</p>
+                <p class="tips">${beerTips}</p>
                 <button class="addtocart">Add To Cart</button>
                 </div>
                 `;
@@ -67,12 +71,55 @@ getBeers = function () {
 
 };
 
-//Hämtar nya öl utan att sidan hämtas igen
+//Hämtar nya öl
 newBeers.addEventListener("click", function () {
     gallery.innerHTML = "";
     output = "";
     getBeers();
 })
+
+randomBeer.addEventListener("click", function (randomData) {
+    generateBeer();
+})
+
+//Kör fetch först och kör sedan displayRandomBeer när fetch är färdigt. 
+generateBeer = function () {
+    fetch(api_random)
+        .then(res => res.json())
+        .then(data => {
+            displayRandomBeer(data)
+        })
+}
+
+displayRandomBeer = function (data) {
+    
+    beerName = data[0].name;
+    beerImg = data[0].image_url;
+    beerDescription = data[0].description;
+    beerPrice = data[0].ebc;
+    beerVolume = data[0].volume;
+    
+    //I vissa fall returneras ingen bild/pris och då får jag 404 error, detta fungerade bättre än try and catch.
+    if(beerImg == null)
+    {
+        beerImg = "https://image.ibb.co/cK8ghx/pexels_photo_681847_1.jpg";
+    }
+    else if(beerPrice == null)
+    {
+        beerPrice = 1;
+    }
+    output = "";
+    output += `<div class="product">
+    <h3 class="productname">${beerName}</h3>
+    <p class="description">${beerDescription}</p>
+    <img src="${beerImg}" alt="a beer">
+    <p class="price">$${beerPrice}</p>
+    <p class="volume">${beerVolume.value} ${beerVolume.unit}</p>
+    <button class="addtocart">Add To Cart</button>
+    </div>              `;
+    gallery.innerHTML = output;
+    addListeners();
+}
 
 addToCart = function (elem) {
     let getprice;
@@ -118,12 +165,17 @@ addToCart = function (elem) {
 }
 
 function addedToCart(pname) {
+    $('#alerts').fadeIn('fast');
     var message = pname + " was added to the cart";
     var alerts = document.getElementById("alerts");
+    alerts.style.visibility = "visible";
     alerts.innerHTML = message;
     if (!alerts.classList.contains("message")) {
         alerts.classList.add("message");
     }
+    setTimeout(function () {
+        $('#alerts').fadeOut('fast');
+    }, 3000);
 }
 
 updateCart = function () {

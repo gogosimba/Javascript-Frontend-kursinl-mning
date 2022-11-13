@@ -1,23 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;900&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;900&display=swap");
 
 body {
-    font-family: 'Roboto Slab', serif;
+    font-family: "Roboto Slab", serif;
     text-align: center;
     line-height: 1.5em;
-    background: #F08A5D;
+    background: #f08a5d;
 }
 
 hr {
     border: none;
-    background: #E0E4CC;
+    background: #e0e4cc;
     height: 1px;
 }
 
 h1 {
     margin: 12px;
 }
+.requestBtn{
+    background-color: blue;
+}
+
+#alerts {
+    position: fixed;
+    top: 0vh;
+    right: 40vw;
+    visibility: visible;
+}
+
+.message {
+    border-width: 1px 0px;
+    border-style: solid;
+    background-color: white;
+    border-color: #a7dbd8;
+    color: #037770;
+    padding: 0em 0;
+    margin: 1em 0;
+}
+
 
 .container {
     max-width: 800px;
@@ -49,21 +68,19 @@ h1 {
     height: 100px;
     overflow: auto;
     text-overflow: ellipsis;
-    
 }
-
-
-.price{
+.tips{
+    overflow: auto;
+    height: 100px;
+}
+.price {
     font-size: x-large;
-    
 }
 
-.product > img {
+.product>img {
     width: 140px;
     height: 330px;
 }
-
-
 
 .cart-container {
     background-color: white;
@@ -72,31 +89,33 @@ h1 {
     top: 90vh;
     width: 20vw;
     height: 90vh;
-    border: 1px solid #E0E4CC;
+    border: 1px solid #e0e4cc;
     border-radius: 5px;
     margin-top: 1em;
     padding: 1em;
     transition: top 1s;
+    overflow: auto;
 }
 
-.cart-container:hover{
+.cart-container:hover {
     top: 28vh;
 }
 
 button {
-    border: 1px solid #FA6900;
+    border: 1px solid #fa6900;
     color: #fff;
-    background: #F38630;
+    background: #f38630;
     padding: 0.6em 1em;
     font-size: 1em;
     line-height: 1;
     border-radius: 1.2em;
-    transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out,
+        border-color 0.2s ease-in-out;
 }
 
 button:hover {
-    background: #A7DBD8;
-    border-color: #69D2E7;
+    background: #a7dbd8;
+    border-color: #69d2e7;
     color: #000;
     cursor: pointer;
 }
@@ -110,7 +129,7 @@ table td,
 table th {
     text-align: left;
     padding: 0.25em 1em;
-    border-bottom: 1px solid #E0E4CC;
+    border-bottom: 1px solid #e0e4cc;
 }
 
 #carttotals {
@@ -118,26 +137,10 @@ table th {
     margin-left: auto;
 }
 
-
-
 #emptycart {
     margin-right: 1em;
 }
-#newbeers{
+
+#newbeers {
     padding: 0.6em 3em;
-}
-
-
-.message {
-    border-width: 1px 0px;
-    border-style: solid;
-    border-color: #A7DBD8;
-    color: #679996;
-    padding: 0.5em 0;
-    margin: 1em 0;
-}
-@media only screen and (max-width: 200px) {
-    body{
-        background-color: red;
-    }
 }
